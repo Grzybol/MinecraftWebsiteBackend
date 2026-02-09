@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -107,7 +108,15 @@ func main() {
 	// Start the server on HTTPS
 
 	log.Println("✅ Server running on HTTPS port 8443")
-	err = r.RunTLS(":8443", "/home/wwwbackend/fullchain.pem", "/home/wwwbackend/privkey.pem")
+	certPath := os.Getenv("TLS_CERT_PATH")
+	if certPath == "" {
+		certPath = "/home/wwwbackend/fullchain.pem"
+	}
+	keyPath := os.Getenv("TLS_KEY_PATH")
+	if keyPath == "" {
+		keyPath = "/home/wwwbackend/privkey.pem"
+	}
+	err = r.RunTLS(":8443", certPath, keyPath)
 	//log.Println("✅ Server running on HTTP port 8080")
 	//err = r.Run(":8080")
 	if err != nil {
