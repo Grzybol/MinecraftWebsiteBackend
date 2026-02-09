@@ -110,11 +110,11 @@ func main() {
 	log.Println("✅ Server running on HTTPS port 8443")
 	certPath := os.Getenv("TLS_CERT_PATH")
 	if certPath == "" {
-		certPath = "/home/wwwbackend/fullchain.pem"
+		certPath = "/certs/fullchain.pem"
 	}
 	keyPath := os.Getenv("TLS_KEY_PATH")
 	if keyPath == "" {
-		keyPath = "/home/wwwbackend/privkey.pem"
+		keyPath = "/certs/privkey.pem"
 	}
 	err = r.RunTLS(":8443", certPath, keyPath)
 	//log.Println("✅ Server running on HTTP port 8080")
