@@ -48,6 +48,15 @@ go build -o backend
 ./backend
 ```
 
+### Docker
+
+Uruchomienie aplikacji w kontenerze (z automatycznym restartem po błędach oraz cyklicznie co 24h):
+```bash
+docker compose up --build
+```
+
+Domyślny interwał restartu jest kontrolowany przez zmienną `RESTART_INTERVAL_SECONDS` i wynosi 86400 sekund (24h). Możesz go zmienić w `docker-compose.yml` lub przez nadpisanie zmiennej środowiskowej.
+
 ## Struktura projektu
 
 Krótki opis głównych plików/katalogów:
